@@ -21,8 +21,14 @@ def parse_txt():
 
     return all_feedback
 
+def upload(data):
+    for feedback in data:
+        response = requests.post("http://<corpweb-external-IP>/feedback", json=feedback)
+        print("{} completed with code - {}".format(response.request.body, response.status_code))
+
 def main():
     data = parse_txt()
+    upload(data)
 
 if __name__ == "__main__":
     main()            
